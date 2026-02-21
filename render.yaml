@@ -6,31 +6,14 @@ services:
     dockerContext: ./backend
     healthCheckPath: /actuator/health
     envVars:
-      - key: DB_HOST
-        fromDatabase:
-          name: colegioapp-db
-          property: host
-      - key: DB_PORT
-        fromDatabase:
-          name: colegioapp-db
-          property: port
-      - key: DB_NAME
-        fromDatabase:
-          name: colegioapp-db
-          property: database
+      - key: DB_URL
+        sync: false
       - key: DB_USER
-        fromDatabase:
-          name: colegioapp-db
-          property: user
+        sync: false
       - key: DB_PASSWORD
-        fromDatabase:
-          name: colegioapp-db
-          property: password
+        sync: false
       - key: REDIS_URL
-        fromService:
-          type: redis
-          name: colegioapp-redis
-          property: connectionString
+        sync: false
       - key: JWT_SECRET
         generateValue: true
 
@@ -42,15 +25,4 @@ services:
     startCommand: npm start
     envVars:
       - key: NEXT_PUBLIC_API_URL
-        value: https://colegioapp-backend.onrender.com
-
-  - type: redis
-    name: colegioapp-redis
-    plan: free
-    ipAllowList: []
-
-databases:
-  - name: colegioapp-db
-    databaseName: colegioapp
-    user: colegioapp
-    plan: free
+        sync: false
