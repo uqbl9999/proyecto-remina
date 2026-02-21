@@ -1,0 +1,24 @@
+# Java / Maven
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+
+# Node
+node_modules/
+web/.next/
+web/out/
+mobile/.expo/
+mobile/dist/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.DS_Store
