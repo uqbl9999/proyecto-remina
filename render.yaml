@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: colegioapp-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: colegioapp-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: colegioapp-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: colegioapp-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: colegioapp-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: colegioapp-db
+          property: password
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: colegioapp-redis
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+
+  - type: web
+    name: colegioapp-web
+    runtime: node
+    rootDir: web
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://colegioapp-backend.onrender.com
+
+  - type: redis
+    name: colegioapp-redis
+    plan: free
+    ipAllowList: []
+
+databases:
+  - name: colegioapp-db
+    databaseName: colegioapp
+    user: colegioapp
+    plan: free
