@@ -15,7 +15,7 @@ SaaS para colegios privados peruanos (200-800 alumnos).
 | backend | Spring Boot 3 + Java 21 | 8080 |
 | web | Next.js 14 | 3000 |
 | mobile | Expo | 8081 |
-| db | PostgreSQL 16 | 5432 |
+| db | PostgreSQL 16 | 5433 (Docker) |
 | redis | Redis 7 | 6379 |
 
 ---
@@ -54,7 +54,7 @@ docker compose up db redis
 **2. Backend (hot reload):**
 ```bash
 cd backend
-./mvnw spring-boot:run
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
 **3. Web (hot reload):**

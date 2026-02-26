@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/colegioapp
+    username: colegioapp
+    password: colegioapp
+  data:
+    redis:
+      url: redis://localhost:6379
