@@ -54,7 +54,7 @@ docker compose up db redis
 **2. Backend (hot reload):**
 ```bash
 cd backend
-./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+./mvnw spring-boot:run
 ```
 
 **3. Web (hot reload):**
