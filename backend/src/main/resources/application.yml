@@ -12,6 +12,14 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+  data:
+    redis:
+      url: ${REDIS_URL:redis://localhost:6379}
+
+jwt:
+  secret: ${JWT_SECRET:bXktc3VwZXItc2VjcmV0LWtleS1mb3ItY29sZWdpb2FwcC0yMDI2}
+  access-token-expiration-ms: 900000
+  refresh-token-expiration-seconds: 604800
 
 server:
   port: 8080
